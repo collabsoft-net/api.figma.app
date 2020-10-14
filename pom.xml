@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    
+    <groupId>app.figma.api</groupId>
+    <artifactId>figma-api</artifactId>
+    <version>1.0.0</version>
+    <packaging>jar</packaging>
+
+    <name>Figma API</name>
+    <description></description>
+
+    <organization>
+        <name>Collabsoft</name>
+    </organization>
+    
+    <developers>
+        <developer>
+            <name>Remie Bolte</name>
+            <organization>Collabsoft</organization>
+            <roles>
+                <role>Lead developer</role>
+            </roles>
+        </developer>
+    </developers>
+    
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name> 
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+    
+    <scm>
+        <url>https://github.com/collabsoft-net/api.figma.app</url>
+    </scm>
+
+    <repositories>
+        <repository>
+            <id>CollabSoft Maven Repository</id>
+            <name>CollabSoft Maven Repository</name>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <url>s3://repository.collabsoft.net/releases</url>
+        </repository>
+        <repository>
+            <id>CollabSoft Maven Repository - Snapshots</id>
+            <name>CollabSoft Maven Repository</name>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <url>s3://repository.collabsoft.net/snapshots</url>
+        </repository>
+    </repositories>
+    
+    <distributionManagement>
+        <repository>
+            <id>CollabSoft Maven Repository</id>
+            <name>CollabSoft Maven Repository</name>
+            <url>s3://repository.collabsoft.net/releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>CollabSoft Maven Repository</id>
+            <name>CollabSoft Maven Repository</name>
+            <url>s3://repository.collabsoft.net/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
+    
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.16</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>2.11.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.12</version>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-lgpl</artifactId>
+            <version>1.9.13</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+
+        <!-- Wagon for S3 repository -->
+        <extensions>
+            <extension>
+                <groupId>org.springframework.build</groupId>
+                <artifactId>aws-maven</artifactId>
+                <version>5.0.0.RELEASE</version>
+            </extension>
+        </extensions>
+    </build>
+</project>
