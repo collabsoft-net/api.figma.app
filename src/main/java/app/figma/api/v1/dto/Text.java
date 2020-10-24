@@ -8,8 +8,4 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Text extends Vector {
-    private String characters;
-    private TypeStyle style;
-    private double[] characterStyleOverrides;
-    private TypeStyle[] styleOverrideTable;
 }

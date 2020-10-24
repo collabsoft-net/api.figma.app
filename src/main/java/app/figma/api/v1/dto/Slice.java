@@ -10,8 +10,4 @@ import java.util.List;
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Slice extends Node {
-    private ExportSetting[] exportSettings;
-    private Rect absoluteBoundingBox;
-    private Vector2d size;
-    private List<List<Double>> relativeTransform;
 }

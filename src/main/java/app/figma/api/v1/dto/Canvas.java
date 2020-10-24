@@ -8,11 +8,7 @@ import org.codehaus.jackson.map.annotate.JsonDeserialize;
 @Getter
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Canvas extends Node {
+public class Canvas extends Node implements withChildren {
     @JsonDeserialize(using = NodeDeserializer.class)
     private Node[] children;
-
-    private Color backgroundColor;
-    private String prototypeStartNodeID;
-    private ExportSetting[] exportSettings;
 }

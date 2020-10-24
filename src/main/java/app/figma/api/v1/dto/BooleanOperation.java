@@ -8,8 +8,7 @@ import org.codehaus.jackson.map.annotate.JsonDeserialize;
 @Getter
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class BooleanOperation extends Vector {
+public class BooleanOperation extends Vector implements withChildren {
     @JsonDeserialize(using = NodeDeserializer.class)
     private Node[] children;
-    private BooleanOperations booleanOperation;
 }

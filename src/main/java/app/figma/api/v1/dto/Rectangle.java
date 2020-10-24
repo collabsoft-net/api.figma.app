@@ -8,6 +8,4 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Rectangle extends Vector {
-    private double cornerRadius;
-    private double[] rectangleCornerRadii;
 }

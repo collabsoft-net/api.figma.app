@@ -17,5 +17,4 @@ public class File {
     private Map<String, Component> components;
     private Document document;
     private double schemaVersion;
-    private Map<String, Style> styles;
 }

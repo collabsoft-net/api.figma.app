@@ -8,5 +8,4 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Instance extends Frame {
-    private String componentId;
 }

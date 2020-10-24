@@ -8,6 +8,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicHeader;
+import org.codehaus.jackson.map.DeserializationConfig;
 import org.codehaus.jackson.map.ObjectMapper;
 
 import java.io.BufferedReader;
@@ -107,7 +108,6 @@ public class FigmaAPI {
             InputStream stream = response.getEntity().getContent();
             String content = streamToString(stream);
             return new ObjectMapper().readValue(content, type);
-
         // As per https://www.figma.com/developers/api#errors
         } else if (statusCode == 400) {
             throw new Exception("400 Bad Request: Parameters are invalid or malformed. Please check the input formats.");

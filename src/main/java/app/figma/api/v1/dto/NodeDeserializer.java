@@ -61,6 +61,7 @@ public class NodeDeserializer extends JsonDeserializer<Node[]> {
                 return codec.treeToValue(node, Vector.class);
 
             case BOOLEAN:
+            case BOOLEAN_OPERATION:
                 return codec.treeToValue(node, BooleanOperation.class);
 
             case RECTANGLE:
@@ -76,7 +77,7 @@ public class NodeDeserializer extends JsonDeserializer<Node[]> {
                 return codec.treeToValue(node, Instance.class);
 
             default:
-                throw new JsonMappingException("Invalid value for the \"type\" property");
+                throw new JsonMappingException("Invalid value for the \"type\" property: " + nodeType);
         }
     }
 }
