@@ -4,13 +4,12 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import lombok.Getter;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
-import java.util.List;
-
 @Getter
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Slice extends Node implements withDimensions {
-
-    private Rect absoluteBoundingBox;
-
+public class Rect {
+    private double height;
+    private double width;
+    private double x;
+    private double y;
 }

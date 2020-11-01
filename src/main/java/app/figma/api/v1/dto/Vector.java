@@ -11,6 +11,9 @@ import java.util.Map;
 @Getter
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Vector extends Node {
+public class Vector extends Node implements withDimensions {
+
+    private Rect absoluteBoundingBox;
+
 }
 
