@@ -2,9 +2,11 @@ package app.figma.api.v1;
 
 import app.figma.api.v1.dto.*;
 import org.apache.http.Header;
+import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicHeader;
@@ -26,8 +28,11 @@ public class FigmaAPI {
 
     public FigmaAPI(String token) {
         List<Header> headers = new ArrayList<>();
-        headers.add(new BasicHeader(FIGMA_TOKEN_HEADER, token));
-        this.client = HttpClientBuilder.create().setDefaultHeaders(headers).build();
+        if (null != token) {
+            headers.add(new BasicHeader(FIGMA_TOKEN_HEADER, token));
+        }
+
+        this.client = HttpClientBuilder.create().setDefaultHeaders(headers).useSystemProperties().build();
     }
 
     public User getMyself() throws Exception {
