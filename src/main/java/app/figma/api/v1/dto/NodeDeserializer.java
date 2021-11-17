@@ -36,8 +36,14 @@ public class NodeDeserializer extends JsonDeserializer<Node[]> {
 
     private Node toNode(JsonNode node, ObjectCodec codec) throws IOException {
         // Get value of the "type" property
+        NodeType nodeType;
         String type = node.get("type").asText();
-        NodeType nodeType = NodeType.valueOf(type);
+
+        try {
+            nodeType = NodeType.valueOf(type);
+        } catch (IllegalArgumentException exp) {
+            throw new JsonMappingException("Invalid value for the \"type\" property: " + type);
+        }
 
         // Check the "type" property and map "object" to the suitable class
         switch (nodeType) {
@@ -51,6 +57,7 @@ public class NodeDeserializer extends JsonDeserializer<Node[]> {
             case FRAME:
             case GROUP:
             case COMPONENT:
+            case COMPONENT_SET:
                 return codec.treeToValue(node, Frame.class);
 
             case VECTOR:

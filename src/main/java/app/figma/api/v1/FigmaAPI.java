@@ -2,25 +2,24 @@ package app.figma.api.v1;
 
 import app.figma.api.v1.dto.*;
 import org.apache.http.Header;
-import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicHeader;
-import org.codehaus.jackson.map.DeserializationConfig;
 import org.codehaus.jackson.map.ObjectMapper;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
 import static app.figma.api.v1.Constants.FIGMA_API_URL;
 import static app.figma.api.v1.Constants.FIGMA_TOKEN_HEADER;
+import static org.codehaus.jackson.map.DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES;
 
 public class FigmaAPI {
 
@@ -112,7 +111,9 @@ public class FigmaAPI {
         if (statusCode == 200) {
             InputStream stream = response.getEntity().getContent();
             String content = streamToString(stream);
-            return new ObjectMapper().readValue(content, type);
+            return new ObjectMapper()
+                    .configure(FAIL_ON_UNKNOWN_PROPERTIES, false)
+                    .readValue(content, type);
         // As per https://www.figma.com/developers/api#errors
         } else if (statusCode == 400) {
             throw new Exception("400 Bad Request: Parameters are invalid or malformed. Please check the input formats.");
@@ -128,7 +129,7 @@ public class FigmaAPI {
     }
 
     private String streamToString(InputStream stream) throws Exception {
-        InputStreamReader isReader = new InputStreamReader(stream);
+        InputStreamReader isReader = new InputStreamReader(stream, StandardCharsets.UTF_8);
         BufferedReader reader = new BufferedReader(isReader);
         StringBuilder sb = new StringBuilder();
         String str;
